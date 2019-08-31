@@ -21,6 +21,7 @@ COPY startup-geoserver-base.sh /startup-geoserver-base.sh
 RUN apt-get update && apt-get install -y \
         wget \
         unzip \
+        openjdk-8-jre-headless \
     # download and extract geoserver archive
     && wget "$GS_URL" \
     && unzip "$GS_ARCHIVE_FILENAME" \
