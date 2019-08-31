@@ -10,9 +10,9 @@ ENV GS_VERSION=2.14.5
 ARG GS_ARCHIVE_FILENAME=geoserver-${GS_VERSION}-bin.zip
 ARG GS_URL=https://downloads.sourceforge.net/project/geoserver/GeoServer/${GS_VERSION}/${GS_ARCHIVE_FILENAME}
 # for correct cpu/memory detection inside a container
-ENV JAVA_OPTS -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
-ENV GEOSERVER_HOME /opt/geoserver
-ENV DISABLE_GEOSERVER_CONSOLE false
+ENV JAVA_OPTS="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+ENV GEOSERVER_HOME=/opt/geoserver
+ENV GEOSERVER_DATA_DIR=/opt/geoserver/data_dir
 
 WORKDIR /tmp
 
