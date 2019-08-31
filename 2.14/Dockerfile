@@ -18,7 +18,9 @@ WORKDIR /tmp
 
 COPY startup-geoserver-base.sh /startup-geoserver-base.sh
 
-RUN apt-get update && apt-get install -y \
+RUN groupadd --gid 999 geoserver \
+    && useradd --no-create-home --shell /bin/false --uid 999 --gid geoserver geoserver \
+    && apt-get update && apt-get install -y \
         wget \
         unzip \
         openjdk-8-jre-headless \
@@ -28,12 +30,15 @@ RUN apt-get update && apt-get install -y \
     && mkdir -p "/opt" \
     && mv "geoserver-$GS_VERSION" "$GEOSERVER_HOME" \
     && chmod +x "${GEOSERVER_HOME}/bin/startup.sh" \
+    && chown -R geoserver:geoserver "${GEOSERVER_HOME}" \
     # clean up
     && rm "$GS_ARCHIVE_FILENAME" \
     && apt-get purge -y \
         wget \
         unzip \
     && rm -rf /var/lib/apt/lists/*
+
+USER geoserver
 
 EXPOSE 8080
 ENTRYPOINT ["/startup-geoserver-base.sh"]
