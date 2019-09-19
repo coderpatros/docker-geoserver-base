@@ -15,3 +15,9 @@ Use this as a simple base image for building your own GeoServer docker
 containers.
 
 Available from Docker Hub as `coderpatros/geoserver-base`
+
+# Microsoft Core Fonts
+
+Please note that this docker image contains the Microsoft Core Fonts.
+
+[Microsoft Core Fonts EULA](http://corefonts.sourceforge.net/eula.htm)

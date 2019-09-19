@@ -24,6 +24,9 @@ RUN groupadd --gid 999 geoserver \
         wget \
         unzip \
         openjdk-8-jre-headless \
+    # install Microsoft core fonts
+    && echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | debconf-set-selections \
+    && apt-get install -y ttf-mscorefonts-installer \
     # download and extract geoserver archive
     && wget "$GS_URL" \
     && unzip "$GS_ARCHIVE_FILENAME" \
